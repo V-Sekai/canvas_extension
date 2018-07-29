@@ -1,8 +1,8 @@
 extends Control
 tool
 
-var points
-var colors
+var points = PoolVector2Array()
+var colors = PoolColorArray()
 
 var points_should_update = true
 var color_should_update = true
@@ -47,10 +47,10 @@ func _notification(what):
 		if(color_should_update):
 			update_colors()
 		
-		draw_primitive(points, colors, Array(), Object())
+		draw_primitive(points, colors, PoolVector2Array(), Object())
 	
 func update_points():
-	points = Vector2Array()
+	points = PoolVector2Array()
 	
 	points.push_back(Vector2(get_size().x * 0.5, 0.0))
 	points.push_back(Vector2(0.0, get_size().y))
@@ -60,7 +60,7 @@ func update_points():
 	points_should_update = false
 	
 func update_colors():
-	colors = ColorArray()
+	colors = PoolColorArray()
 	
 	colors.push_back(Color(top_left_color.r, top_left_color.b, top_left_color.g, top_left_color.a * get_opacity()))
 	colors.push_back(Color(bottom_left_color.r, bottom_left_color.b, bottom_left_color.g, bottom_left_color.a * get_opacity()))
@@ -72,10 +72,4 @@ func update_colors():
 func _on_resized():
 	if(ignore_resize == false):
 		points_should_update = true
-		update()
-		
-func set_opacity(p_opacity):
-	if(p_opacity != get_opacity()):
-		.set_opacity(p_opacity)
-		color_should_update = true
 		update()

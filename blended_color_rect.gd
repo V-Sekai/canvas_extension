@@ -47,7 +47,7 @@ func _notification(what):
 		if(color_should_update):
 			update_colors()
 		
-		draw_primitive(points, colors, Array(), Object())
+		draw_primitive(points, colors, PoolVector2Array(), Object())
 	
 func update_points():
 	points = PoolVector2Array()
