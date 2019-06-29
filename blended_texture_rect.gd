@@ -1,4 +1,5 @@
 extends Control
+class_name BlendedTextureRect
 tool
 
 const uv_array = [Vector2(0.0, 0.0), Vector2(0.0, 1.0), Vector2(1.0, 1.0), Vector2(1.0, 0.0)]

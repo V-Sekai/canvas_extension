@@ -1,4 +1,5 @@
 extends Control
+class_name BlendedColorRibbon
 tool
 
 var points = PoolVector2Array()

@@ -1,4 +1,5 @@
 extends Control
+class_name GridRect
 tool
 
 export(Color) var grid_color = Color(1.0, 1.0, 1.0, 1.0) setget set_grid_color, get_grid_color
