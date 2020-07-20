@@ -40,15 +40,16 @@ func _init():
 	update()
 	
 func _notification(what):
-	if(what == NOTIFICATION_RESIZED):
-		_on_resized()
-	elif(what == NOTIFICATION_DRAW):
-		if(points_should_update):
-			update_points()
-		if(color_should_update):
-			update_colors()
-		
-		draw_primitive(points, colors, PoolVector2Array(), Object())
+	match what:
+		NOTIFICATION_RESIZED:
+			_on_resized()
+		NOTIFICATION_DRAW:
+			if points_should_update:
+				update_points()
+			if color_should_update:
+				update_colors()
+			
+			draw_primitive(points, colors, PoolVector2Array(), Object())
 	
 func update_points():
 	points = PoolVector2Array()
@@ -71,6 +72,6 @@ func update_colors():
 	color_should_update = false
 
 func _on_resized():
-	if(ignore_resize == false):
+	if!ignore_resize:
 		points_should_update = true
 		update()

@@ -24,7 +24,7 @@ func set_fixed_rotation(p_rotation):
 	update_uvs()
 	
 func set_texture(p_texture):
-	if(p_texture):
+	if p_texture:
 		texture = p_texture
 	else:
 		texture = Object()
@@ -33,17 +33,17 @@ func _init():
 	update()
 	
 func _notification(what):
-	if(what == NOTIFICATION_RESIZED):
-		_on_resized()
-	elif(what == NOTIFICATION_DRAW):
-		if(points_should_update):
-			update_points()
-		if(color_should_update):
-			update_colors()
-		if(uv_should_update):
-			update_uvs()
-		
-		draw_primitive(points, colors, uvs, texture)
+	match what:
+		NOTIFICATION_RESIZED:
+			_on_resized()
+		NOTIFICATION_DRAW:
+			if(points_should_update):
+				update_points()
+			if(color_should_update):
+				update_colors()
+			if(uv_should_update):
+				update_uvs()
+			draw_primitive(points, colors, uvs, texture)
 	
 func update_points():
 	points = PoolVector2Array()
@@ -68,30 +68,31 @@ func update_colors():
 func update_uvs():
 	uvs = PoolVector2Array()
 	
-	if(fixed_rotation == ROTATION_0):
-		uvs.push_back(uv_array[0])
-		uvs.push_back(uv_array[1])
-		uvs.push_back(uv_array[2])
-		uvs.push_back(uv_array[3])
-	elif(fixed_rotation == ROTATION_90):
-		uvs.push_back(uv_array[1])
-		uvs.push_back(uv_array[2])
-		uvs.push_back(uv_array[3])
-		uvs.push_back(uv_array[0])
-	elif(fixed_rotation == ROTATION_180):
-		uvs.push_back(uv_array[2])
-		uvs.push_back(uv_array[3])
-		uvs.push_back(uv_array[0])
-		uvs.push_back(uv_array[1])
-	elif(fixed_rotation == ROTATION_270):
-		uvs.push_back(uv_array[3])
-		uvs.push_back(uv_array[0])
-		uvs.push_back(uv_array[1])
-		uvs.push_back(uv_array[2])
+	match fixed_rotation:
+		ROTATION_0:
+			uvs.push_back(uv_array[0])
+			uvs.push_back(uv_array[1])
+			uvs.push_back(uv_array[2])
+			uvs.push_back(uv_array[3])
+		ROTATION_90:
+			uvs.push_back(uv_array[1])
+			uvs.push_back(uv_array[2])
+			uvs.push_back(uv_array[3])
+			uvs.push_back(uv_array[0])
+		ROTATION_180:
+			uvs.push_back(uv_array[2])
+			uvs.push_back(uv_array[3])
+			uvs.push_back(uv_array[0])
+			uvs.push_back(uv_array[1])
+		ROTATION_270:
+			uvs.push_back(uv_array[3])
+			uvs.push_back(uv_array[0])
+			uvs.push_back(uv_array[1])
+			uvs.push_back(uv_array[2])
 	
 	uv_should_update = false
 
 func _on_resized():
-	if(ignore_resize == false):
+	if !ignore_resize:
 		points_should_update = true
 		update()
