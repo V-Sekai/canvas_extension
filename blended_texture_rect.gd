@@ -14,60 +14,67 @@ var uv_should_update = true
 
 var ignore_resize = false
 
-enum {ROTATION_0, ROTATION_90, ROTATION_180, ROTATION_270}
+enum { ROTATION_0, ROTATION_90, ROTATION_180, ROTATION_270 }
 
-export(int, "0", "90", "180", "270") var fixed_rotation = ROTATION_0 setget set_fixed_rotation
-export(Texture) var texture = Object() setget set_texture
+export (int, "0", "90", "180", "270") var fixed_rotation = ROTATION_0 setget set_fixed_rotation
+export (Texture) var texture = Object() setget set_texture
+
 
 func set_fixed_rotation(p_rotation):
 	fixed_rotation = p_rotation
 	update_uvs()
-	
+
+
 func set_texture(p_texture):
 	if p_texture:
 		texture = p_texture
 	else:
 		texture = Object()
 
+
 func _init():
 	update()
-	
+
+
 func _notification(what):
 	match what:
 		NOTIFICATION_RESIZED:
 			_on_resized()
 		NOTIFICATION_DRAW:
-			if(points_should_update):
+			if points_should_update:
 				update_points()
-			if(color_should_update):
+			if color_should_update:
 				update_colors()
-			if(uv_should_update):
+			if uv_should_update:
 				update_uvs()
 			draw_primitive(points, colors, uvs, texture)
-	
+
+
 func update_points():
 	points = PoolVector2Array()
-	
+
 	points.push_back(Vector2(0.0, 0.0))
 	points.push_back(Vector2(0.0, get_size().y))
 	points.push_back(Vector2(get_size().x, get_size().y))
 	points.push_back(Vector2(get_size().x, 0.0))
-	
+
 	points_should_update = false
-	
+
+
 func update_colors():
 	colors = PoolColorArray()
-	
+
 	colors.push_back(Color())
 	colors.push_back(Color())
 	colors.push_back(Color())
 	colors.push_back(Color())
-	
+
 	color_should_update = false
-	
+
+
 func update_uvs():
 	uvs = PoolVector2Array()
-	
+
 	match fixed_rotation:
 		ROTATION_0:
 			uvs.push_back(uv_array[0])
@@ -89,10 +96,11 @@ func update_uvs():
 			uvs.push_back(uv_array[0])
 			uvs.push_back(uv_array[1])
 			uvs.push_back(uv_array[2])
-	
+
 	uv_should_update = false
 
+
 func _on_resized():
-	if !ignore_resize:
+	if ! ignore_resize:
 		points_should_update = true
 		update()
