@@ -2,49 +2,49 @@ extends Control
 class_name BlendedColorRibbon
 tool
 
-var points = PoolVector2Array()
-var colors = PoolColorArray()
+var points: PoolVector2Array = PoolVector2Array()
+var colors: PoolColorArray = PoolColorArray()
 
-var points_should_update = true
-var color_should_update = true
+var points_should_update: bool = true
+var color_should_update: bool = true
 
-var ignore_resize = false
+var ignore_resize: bool = false
 
-export (Color) var top_left_color = Color() setget _set_top_left_color
-export (Color) var bottom_left_color = Color() setget _set_bottom_left_color
-export (Color) var bottom_right_color = Color() setget _set_bottom_right_color
-export (Color) var top_right_color = Color() setget _set_top_right_color
+export (Color) var top_left_color: Color = Color() setget _set_top_left_color
+export (Color) var bottom_left_color: Color = Color() setget _set_bottom_left_color
+export (Color) var bottom_right_color: Color = Color() setget _set_bottom_right_color
+export (Color) var top_right_color: Color = Color() setget _set_top_right_color
 
 
-func _set_top_left_color(p_color):
+func _set_top_left_color(p_color: Color) -> void:
 	top_left_color = p_color
 	color_should_update = true
 	update()
 
 
-func _set_bottom_left_color(p_color):
+func _set_bottom_left_color(p_color: Color) -> void:
 	bottom_left_color = p_color
 	color_should_update = true
 	update()
 
 
-func _set_bottom_right_color(p_color):
+func _set_bottom_right_color(p_color: Color) -> void:
 	bottom_right_color = p_color
 	color_should_update = true
 	update()
 
 
-func _set_top_right_color(p_color):
+func _set_top_right_color(p_color: Color) -> void:
 	top_right_color = p_color
 	color_should_update = true
 	update()
 
 
-func _init():
+func _init() -> void:
 	update()
 
 
-func _notification(what):
+func _notification(what: int) -> void:
 	match what:
 		NOTIFICATION_RESIZED:
 			_on_resized()
@@ -57,7 +57,7 @@ func _notification(what):
 			draw_primitive(points, colors, PoolVector2Array(), Object())
 
 
-func update_points():
+func update_points() -> void:
 	points = PoolVector2Array()
 
 	points.push_back(Vector2(get_size().x * 0.5, 0.0))
@@ -68,7 +68,7 @@ func update_points():
 	points_should_update = false
 
 
-func update_colors():
+func update_colors() -> void:
 	colors = PoolColorArray()
 
 	colors.push_back(
@@ -107,7 +107,7 @@ func update_colors():
 	color_should_update = false
 
 
-func _on_resized():
+func _on_resized() -> void:
 	if ! ignore_resize:
 		points_should_update = true
 		update()
