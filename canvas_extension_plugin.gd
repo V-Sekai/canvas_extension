@@ -1,8 +1,8 @@
+@tool
 extends EditorPlugin
-tool
 
 var editor_interface = null
 
 
-func get_name():
+func _get_plugin_name():
 	return "CanvasExtension"

@@ -1,19 +1,27 @@
-extends Control
-class_name BlendedColorRect
-tool
+@tool
+class_name BlendedColorRect extends Control
 
-var points = PoolVector2Array()
-var colors = PoolColorArray()
+
+var points = PackedVector2Array()
+var colors = PackedColorArray()
 
 var points_should_update = true
 var color_should_update = true
 
 var ignore_resize = false
 
-export (Color) var top_left_color = Color() setget _set_top_left_color
-export (Color) var bottom_left_color = Color() setget _set_bottom_left_color
-export (Color) var bottom_right_color = Color() setget _set_bottom_right_color
-export (Color) var top_right_color = Color() setget _set_top_right_color
+@export  var top_left_color : Color = Color() :
+	set = _set_top_left_color
+
+@export  var bottom_left_color : Color = Color() :
+	set = _set_bottom_left_color
+
+@export  var bottom_right_color : Color = Color() :
+	set = _set_bottom_right_color
+
+@export  var top_right_color : Color = Color() :
+	set = _set_top_right_color
+
 
 
 func _set_top_left_color(p_color):
@@ -54,11 +62,11 @@ func _notification(what):
 			if color_should_update:
 				update_colors()
 
-			draw_primitive(points, colors, PoolVector2Array(), Object())
+			draw_primitive(points, colors, PackedVector2Array(), Object())
 
 
 func update_points():
-	points = PoolVector2Array()
+	points = PackedVector2Array()
 
 	points.push_back(Vector2(0.0, 0.0))
 	points.push_back(Vector2(0.0, get_size().y))
@@ -69,7 +77,7 @@ func update_points():
 
 
 func update_colors():
-	colors = PoolColorArray()
+	colors = PackedColorArray()
 
 	colors.push_back(top_left_color)
 	colors.push_back(bottom_left_color)

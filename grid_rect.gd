@@ -1,9 +1,15 @@
-extends Control
-class_name GridRect
-tool
+@tool
+class_name GridRect extends Control
 
-export (Color) var grid_color = Color(1.0, 1.0, 1.0, 1.0) setget set_grid_color, get_grid_color
-export (Vector2) var snap_step = Vector2(64.0, 64.0) setget set_snap_step, get_snap_step
+
+@export  var grid_color : Color = Color(1.0, 1.0, 1.0, 1.0) :
+	set = set_grid_color,
+	get = get_grid_color
+
+@export  var snap_step : Vector2 = Vector2(64.0, 64.0) :
+	set = set_snap_step,
+	get = get_snap_step
+
 
 
 func set_grid_color(p_color):

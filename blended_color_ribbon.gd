@@ -1,19 +1,27 @@
-extends Control
-class_name BlendedColorRibbon
-tool
+@tool
+class_name BlendedColorRibbon extends Control
 
-var points: PoolVector2Array = PoolVector2Array()
-var colors: PoolColorArray = PoolColorArray()
+
+var points: PackedVector2Array = PackedVector2Array()
+var colors: PackedColorArray = PackedColorArray()
 
 var points_should_update: bool = true
 var color_should_update: bool = true
 
 var ignore_resize: bool = false
 
-export (Color) var top_left_color: Color = Color() setget _set_top_left_color
-export (Color) var bottom_left_color: Color = Color() setget _set_bottom_left_color
-export (Color) var bottom_right_color: Color = Color() setget _set_bottom_right_color
-export (Color) var top_right_color: Color = Color() setget _set_top_right_color
+@export  var top_left_color: Color = Color() :
+	set = _set_top_left_color
+
+@export  var bottom_left_color: Color = Color() :
+	set = _set_bottom_left_color
+
+@export  var bottom_right_color: Color = Color() :
+	set = _set_bottom_right_color
+
+@export  var top_right_color: Color = Color() :
+	set = _set_top_right_color
+
 
 
 func _set_top_left_color(p_color: Color) -> void:
@@ -40,7 +48,7 @@ func _set_top_right_color(p_color: Color) -> void:
 	update()
 
 
-func _init() -> void:
+func _init():
 	update()
 
 
@@ -54,11 +62,11 @@ func _notification(what: int) -> void:
 			if color_should_update:
 				update_colors()
 
-			draw_primitive(points, colors, PoolVector2Array(), Object())
+			draw_primitive(points, colors, PackedVector2Array(), Object())
 
 
 func update_points() -> void:
-	points = PoolVector2Array()
+	points = PackedVector2Array()
 
 	points.push_back(Vector2(get_size().x * 0.5, 0.0))
 	points.push_back(Vector2(0.0, get_size().y))
@@ -69,7 +77,7 @@ func update_points() -> void:
 
 
 func update_colors() -> void:
-	colors = PoolColorArray()
+	colors = PackedColorArray()
 
 	colors.push_back(
 		Color(

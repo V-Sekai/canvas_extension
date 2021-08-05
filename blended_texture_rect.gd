@@ -1,12 +1,12 @@
-extends Control
-class_name BlendedTextureRect
-tool
+@tool
+class_name BlendedTextureRect extends Control
+
 
 const uv_array = [Vector2(0.0, 0.0), Vector2(0.0, 1.0), Vector2(1.0, 1.0), Vector2(1.0, 0.0)]
 
-var points = PoolVector2Array()
-var colors = PoolColorArray()
-var uvs = PoolVector2Array()
+var points = PackedVector2Array()
+var colors = PackedColorArray()
+var uvs = PackedVector2Array()
 
 var points_should_update = true
 var color_should_update = true
@@ -14,10 +14,18 @@ var uv_should_update = true
 
 var ignore_resize = false
 
-enum { ROTATION_0, ROTATION_90, ROTATION_180, ROTATION_270 }
+const ROTATION_0=0
+const ROTATION_90=1
+const ROTATION_180=2
+const ROTATION_270=3
 
-export (int, "0", "90", "180", "270") var fixed_rotation = ROTATION_0 setget set_fixed_rotation
-export (Texture) var texture = Object() setget set_texture
+
+@export_enum("0", "90", "180", "270")  var fixed_rotation : int = ROTATION_0 :
+	set = set_fixed_rotation
+
+@export  var texture : Texture2D = Object() :
+	set = set_texture
+
 
 
 func set_fixed_rotation(p_rotation):
@@ -51,7 +59,7 @@ func _notification(what):
 
 
 func update_points():
-	points = PoolVector2Array()
+	points = PackedVector2Array()
 
 	points.push_back(Vector2(0.0, 0.0))
 	points.push_back(Vector2(0.0, get_size().y))
@@ -62,7 +70,7 @@ func update_points():
 
 
 func update_colors():
-	colors = PoolColorArray()
+	colors = PackedColorArray()
 
 	colors.push_back(Color())
 	colors.push_back(Color())
@@ -73,7 +81,7 @@ func update_colors():
 
 
 func update_uvs():
-	uvs = PoolVector2Array()
+	uvs = PackedVector2Array()
 
 	match fixed_rotation:
 		ROTATION_0:
