@@ -23,7 +23,7 @@ const ROTATION_270=3
 @export_enum("0", "90", "180", "270")  var fixed_rotation : int = ROTATION_0 :
 	set = set_fixed_rotation
 
-@export  var texture : Texture2D = Object() :
+@export var texture : Texture2D = Object() :
 	set = set_texture
 
 

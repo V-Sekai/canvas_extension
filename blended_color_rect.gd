@@ -10,16 +10,16 @@ var color_should_update = true
 
 var ignore_resize = false
 
-@export  var top_left_color : Color = Color() :
+@export var top_left_color : Color = Color() :
 	set = _set_top_left_color
 
-@export  var bottom_left_color : Color = Color() :
+@export var bottom_left_color : Color = Color() :
 	set = _set_bottom_left_color
 
-@export  var bottom_right_color : Color = Color() :
+@export var bottom_right_color : Color = Color() :
 	set = _set_bottom_right_color
 
-@export  var top_right_color : Color = Color() :
+@export var top_right_color : Color = Color() :
 	set = _set_top_right_color
 
 
