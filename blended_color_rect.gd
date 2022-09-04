@@ -27,29 +27,29 @@ var ignore_resize = false
 func _set_top_left_color(p_color):
 	top_left_color = p_color
 	color_should_update = true
-	update()
+	update_minimum_size()
 
 
 func _set_bottom_left_color(p_color):
 	bottom_left_color = p_color
 	color_should_update = true
-	update()
+	update_minimum_size()
 
 
 func _set_bottom_right_color(p_color):
 	bottom_right_color = p_color
 	color_should_update = true
-	update()
+	update_minimum_size()
 
 
 func _set_top_right_color(p_color):
 	top_right_color = p_color
 	color_should_update = true
-	update()
+	update_minimum_size()
 
 
 func _init():
-	update()
+	update_minimum_size()
 
 
 func _notification(what):
@@ -90,4 +90,4 @@ func update_colors():
 func _on_resized():
 	if ! ignore_resize:
 		points_should_update = true
-		update()
+	update_minimum_size()
