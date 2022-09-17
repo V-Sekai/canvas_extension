@@ -41,7 +41,7 @@ func set_texture(p_texture):
 
 
 func _init():
-	update()
+	queue_redraw()
 
 
 func _notification(what):
@@ -111,4 +111,4 @@ func update_uvs():
 func _on_resized():
 	if ! ignore_resize:
 		points_should_update = true
-		update()
+		queue_redraw()

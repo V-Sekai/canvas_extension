@@ -14,7 +14,7 @@ class_name GridRect extends Control
 
 func set_grid_color(p_color):
 	grid_color = p_color
-	update()
+	queue_redraw()
 
 
 func get_grid_color():
@@ -23,7 +23,7 @@ func get_grid_color():
 
 func set_snap_step(p_snap_step):
 	snap_step = p_snap_step
-	update()
+	queue_redraw()
 
 
 func get_snap_step():

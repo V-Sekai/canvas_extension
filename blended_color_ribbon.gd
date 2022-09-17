@@ -27,29 +27,29 @@ var ignore_resize: bool = false
 func _set_top_left_color(p_color: Color) -> void:
 	top_left_color = p_color
 	color_should_update = true
-	update()
+	queue_redraw()
 
 
 func _set_bottom_left_color(p_color: Color) -> void:
 	bottom_left_color = p_color
 	color_should_update = true
-	update()
+	queue_redraw()
 
 
 func _set_bottom_right_color(p_color: Color) -> void:
 	bottom_right_color = p_color
 	color_should_update = true
-	update()
+	queue_redraw()
 
 
 func _set_top_right_color(p_color: Color) -> void:
 	top_right_color = p_color
 	color_should_update = true
-	update()
+	queue_redraw()
 
 
 func _init():
-	update()
+	queue_redraw()
 
 
 func _notification(what: int) -> void:
@@ -118,4 +118,4 @@ func update_colors() -> void:
 func _on_resized() -> void:
 	if ! ignore_resize:
 		points_should_update = true
-		update()
+		queue_redraw()
