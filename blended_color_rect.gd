@@ -29,7 +29,6 @@
 @tool
 class_name BlendedColorRect extends Control
 
-
 var points = PackedVector2Array()
 var colors = PackedColorArray()
 
@@ -38,18 +37,17 @@ var color_should_update = true
 
 var ignore_resize = false
 
-@export var top_left_color : Color = Color() :
+@export var top_left_color: Color = Color():
 	set = _set_top_left_color
 
-@export var bottom_left_color : Color = Color() :
+@export var bottom_left_color: Color = Color():
 	set = _set_bottom_left_color
 
-@export var bottom_right_color : Color = Color() :
+@export var bottom_right_color: Color = Color():
 	set = _set_bottom_right_color
 
-@export var top_right_color : Color = Color() :
+@export var top_right_color: Color = Color():
 	set = _set_top_right_color
-
 
 
 func _set_top_left_color(p_color):
@@ -116,6 +114,6 @@ func update_colors():
 
 
 func _on_resized():
-	if ! ignore_resize:
+	if !ignore_resize:
 		points_should_update = true
 	update_minimum_size()

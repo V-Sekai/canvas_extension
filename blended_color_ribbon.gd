@@ -29,7 +29,6 @@
 @tool
 class_name BlendedColorRibbon extends Control
 
-
 var points: PackedVector2Array = PackedVector2Array()
 var colors: PackedColorArray = PackedColorArray()
 
@@ -38,18 +37,17 @@ var color_should_update: bool = true
 
 var ignore_resize: bool = false
 
-@export var top_left_color: Color = Color() :
+@export var top_left_color: Color = Color():
 	set = _set_top_left_color
 
-@export var bottom_left_color: Color = Color() :
+@export var bottom_left_color: Color = Color():
 	set = _set_bottom_left_color
 
-@export var bottom_right_color: Color = Color() :
+@export var bottom_right_color: Color = Color():
 	set = _set_bottom_right_color
 
-@export var top_right_color: Color = Color() :
+@export var top_right_color: Color = Color():
 	set = _set_top_right_color
-
 
 
 func _set_top_left_color(p_color: Color) -> void:
@@ -107,43 +105,15 @@ func update_points() -> void:
 func update_colors() -> void:
 	colors = PackedColorArray()
 
-	colors.push_back(
-		Color(
-			top_left_color.r,
-			top_left_color.b,
-			top_left_color.g,
-			top_left_color.a * get_modulate().a
-		)
-	)
-	colors.push_back(
-		Color(
-			bottom_left_color.r,
-			bottom_left_color.b,
-			bottom_left_color.g,
-			bottom_left_color.a * get_modulate().a
-		)
-	)
-	colors.push_back(
-		Color(
-			bottom_right_color.r,
-			bottom_right_color.b,
-			bottom_right_color.g,
-			bottom_right_color.a * get_modulate().a
-		)
-	)
-	colors.push_back(
-		Color(
-			top_right_color.r,
-			top_right_color.b,
-			top_right_color.g,
-			top_right_color.a * get_modulate().a
-		)
-	)
+	colors.push_back(Color(top_left_color.r, top_left_color.b, top_left_color.g, top_left_color.a * get_modulate().a))
+	colors.push_back(Color(bottom_left_color.r, bottom_left_color.b, bottom_left_color.g, bottom_left_color.a * get_modulate().a))
+	colors.push_back(Color(bottom_right_color.r, bottom_right_color.b, bottom_right_color.g, bottom_right_color.a * get_modulate().a))
+	colors.push_back(Color(top_right_color.r, top_right_color.b, top_right_color.g, top_right_color.a * get_modulate().a))
 
 	color_should_update = false
 
 
 func _on_resized() -> void:
-	if ! ignore_resize:
+	if !ignore_resize:
 		points_should_update = true
 		queue_redraw()

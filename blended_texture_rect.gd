@@ -29,7 +29,6 @@
 @tool
 class_name BlendedTextureRect extends Control
 
-
 const uv_array = [Vector2(0.0, 0.0), Vector2(0.0, 1.0), Vector2(1.0, 1.0), Vector2(1.0, 0.0)]
 
 var points = PackedVector2Array()
@@ -42,18 +41,16 @@ var uv_should_update = true
 
 var ignore_resize = false
 
-const ROTATION_0=0
-const ROTATION_90=1
-const ROTATION_180=2
-const ROTATION_270=3
+const ROTATION_0 = 0
+const ROTATION_90 = 1
+const ROTATION_180 = 2
+const ROTATION_270 = 3
 
-
-@export_enum("0", "90", "180", "270")  var fixed_rotation : int = ROTATION_0 :
+@export_enum("0", "90", "180", "270") var fixed_rotation: int = ROTATION_0:
 	set = set_fixed_rotation
 
-@export var texture : Texture2D = Object() :
+@export var texture: Texture2D = Object():
 	set = set_texture
-
 
 
 func set_fixed_rotation(p_rotation):
@@ -137,6 +134,6 @@ func update_uvs():
 
 
 func _on_resized():
-	if ! ignore_resize:
+	if !ignore_resize:
 		points_should_update = true
 		queue_redraw()
