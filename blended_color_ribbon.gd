@@ -106,9 +106,15 @@ func update_colors() -> void:
 	colors = PackedColorArray()
 
 	colors.push_back(Color(top_left_color.r, top_left_color.b, top_left_color.g, top_left_color.a * get_modulate().a))
-	colors.push_back(Color(bottom_left_color.r, bottom_left_color.b, bottom_left_color.g, bottom_left_color.a * get_modulate().a))
-	colors.push_back(Color(bottom_right_color.r, bottom_right_color.b, bottom_right_color.g, bottom_right_color.a * get_modulate().a))
-	colors.push_back(Color(top_right_color.r, top_right_color.b, top_right_color.g, top_right_color.a * get_modulate().a))
+	colors.push_back(
+		Color(bottom_left_color.r, bottom_left_color.b, bottom_left_color.g, bottom_left_color.a * get_modulate().a)
+	)
+	colors.push_back(
+		Color(bottom_right_color.r, bottom_right_color.b, bottom_right_color.g, bottom_right_color.a * get_modulate().a)
+	)
+	colors.push_back(
+		Color(top_right_color.r, top_right_color.b, top_right_color.g, top_right_color.a * get_modulate().a)
+	)
 
 	color_should_update = false
 
